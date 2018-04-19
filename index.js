@@ -5,9 +5,12 @@ const bodyParser = require('koa-bodyparser');
 
 const logger = require('./middleware/logger');
 const cors = require('./middleware/cors');
-// const route = require('./routes')
+const route = require('./routes');
 
 const config = require('./config');
+
+const mysql = require('./base/mysql');
+mysql.init();
 
 const app = new Koa();
 
@@ -15,10 +18,7 @@ app
     .use(bodyParser())
     .use(logger)
     .use(cors)
-
-app.use((ctx) => {
-    ctx.body = 'asdasd'
-});
+    .use(route.routes());
 
 // 默认端口80
 const port = config.port || 80;
