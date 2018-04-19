@@ -1,6 +1,6 @@
 'use strict';
 
-const getDate = require('../utils/getDate');
+const getDate = require('../base/getDate');
 
 /**
  * 打印日志
@@ -18,7 +18,7 @@ module.exports = async function({ request, response }, next) {
 
     let { url, method, body: reqBody, ip } = request;
 
-    let date = `Date: ${getDate()}`;
+    let date = `Date: ${getDate()}\n`;
     
     ip = `From IP: ${ip.substring(7)}\n`;
 
