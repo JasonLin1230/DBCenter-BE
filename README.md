@@ -30,7 +30,7 @@ DBCenter是一个协助前端工程师实现数据持久化存储的后台系统
 
 ## 项目运行
 
-运行前请先安装`nodejs`
+运行前请先安装`nodejs`和`mysql`
 
 `clone`项目到本地
 
@@ -43,10 +43,18 @@ git clone https://github.com/wrz199306/dbcenter-be
 npm install
 ```
 
+配置
+
+```
+进入config.json
+完善mysql配置,无需配置msgApi
+系统登陆手机验证码验证代码已被注释，可输入任意验证码登陆系统，代码位置/server/routes/login.js:19
+```
+
 项目运行
 
-> - 进入/server/config.json,完善mysql配置
-> - 系统登陆手机验证码验证代码已被注释，可输入任意验证码登陆系统，代码位置/server/routes/login.js:19
+> - 
+> - 
 
 ```
 npm run start
