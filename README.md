@@ -48,7 +48,7 @@ npm install
 ```
 进入config.json
 完善mysql配置,无需配置msgApi
-系统登陆手机验证码验证代码已被注释，可输入任意验证码登陆系统，代码位置/server/routes/login.js:19
+系统登陆手机验证码验证代码已被注释, 可输入任意验证码登陆系统
 ```
 
 项目运行
