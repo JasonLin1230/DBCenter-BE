@@ -38,61 +38,6 @@ module.exports = class extends Base {
         super();
     }
 
-    // 查询租户下所有数据表
-    async query(ctx) {
-        const tableName = ctx.query.tableName
-
-        let condition = tableName ? ` LIKE "${tableName}"` : ''
-
-        let showTalbesSql = `SHOW TABLES ${condition};`
-
-        const result = await this.sql(showTalbesSql);
-
-        const tables = result.map((item) => {
-            return Object.values(item)[0]
-        })
-
-        ctx.body = {
-            code: 0,
-            data: tables
-        }
-    }
-
-    // 查询数据表详细信息
-    async findOne(ctx) {
-        const tableName = ctx.params.tableName;
-
-        let result = await this.sql(`desc ${tableName}`);
-
-        result = result.map((item) => {
-            let type = item.Type.split('(')[0]
-
-            if (item.Key === 'PRI') {
-                type = 'id';
-            } else {
-                type = parseType(type);
-            }
-
-            let def = item.Default
-
-            if (type === 'Number') def = parseFloat(item.Default)
-
-
-            return {
-                name: item.Field,
-                type: type,
-                default: def,
-                notNull: item.Null === 'NO',
-                unique: item.Key === 'UNI' || item.Key === 'PRI'
-            }
-        })
-
-        ctx.body = {
-            code: 0,
-            data: result
-        }
-    }
-
     // 添加数据表
     async insert(ctx) {
         const { tableName, attrs } = ctx.request.body
@@ -148,4 +93,55 @@ module.exports = class extends Base {
             message: 'success!'
         };
     }
+
+    // 查询租户下所有数据表
+    async query(ctx) {
+
+        const result = await this.sql('SHOW TABLES;');
+
+        const tables = result.map((item) => {
+            return Object.values(item)[0]
+        })
+
+        ctx.body = {
+            code: 0,
+            data: tables
+        }
+    }
+
+    // 查询数据表详细信息
+    async findOne(ctx) {
+        const tableName = ctx.params.tableName;
+
+        let result = await this.sql(`desc ${tableName}`);
+
+        result = result.map((item) => {
+            let type = item.Type.split('(')[0]
+
+            if (item.Key === 'PRI') {
+                type = 'id';
+            } else {
+                type = parseType(type);
+            }
+
+            let def = item.Default
+
+            if (type === 'Number') def = parseFloat(item.Default)
+
+
+            return {
+                name: item.Field,
+                type: type,
+                default: def,
+                notNull: item.Null === 'NO',
+                unique: item.Key === 'UNI' || item.Key === 'PRI'
+            }
+        })
+
+        ctx.body = {
+            code: 0,
+            data: result
+        }
+    }
+
 }
