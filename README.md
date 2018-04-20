@@ -2,7 +2,7 @@
 
 > 技术栈 nodejs + koa2 + mysql + es6/7
 
-> 预览地址 [http://39.107.239.177](http://39.107.239.177)
+> 预览地址 [http://dbcenter.top](http://dbcenter.top)
 
 > 相关项目地址：[前端项目地址](https://github.com/wrz199306/dbcenter-fe)
 
@@ -59,7 +59,7 @@ npm run start
 
 ## 创建数据表
 
-- 登录[DBCenter](http://39.107.239.177)后，可创建数据表
+- 登录[DBCenter](http://dbcenter.top)后，可创建数据表
 - 默认生成ID字段
 - 数据表字段类型分为3种
     1. 字符串: VARCHAR(255)
@@ -72,15 +72,15 @@ npm run start
 
 | 名称 | 类型 | 是否必须 | 说明 |
 |:------:|:-------:|:-------------:|:-------------:|
-| phone | String | 是 | [DBCenter](http://39.107.239.177)登录所用到的手机号 |
-| secret | String | 是 | [DBCenter](http://39.107.239.177)登录之后右上角获取 |
+| phone | String | 是 | [DBCenter](http://dbcenter.top)登录所用到的手机号 |
+| secret | String | 是 | [DBCenter](http://dbcenter.top)登录之后右上角获取 |
 
 
 ## 接口列表
 
 ### 数据插入接口
 
-#### 调用地址：http://39.107.239.177:8888/data/:tableName
+#### 调用地址：http://dbcenter.top:8888/data/:tableName
 
 #### 请求方式：POST
 
@@ -89,19 +89,19 @@ npm run start
 #### 请求参数(params)：
 | 名称 | 类型 | 是否必须 | 说明 |
 |:------:|:-------:|:-------------:|:-------------:|
-| tableName | String | 是 | 将要操作的数据表名,通过[DBCenter](http://39.107.239.177)可添加数据表 |
+| tableName | String | 是 | 将要操作的数据表名,通过[DBCenter](http://dbcenter.top)可添加数据表 |
 
 #### 请求参数(body)：
 | 名称 | 类型 | 是否必须 | 说明 |
 |:------:|:-------:|:-------------:|:-------------:|
-| attrData | Object | 是 | 将要插入的数据，请严格遵守[DBCenter](http://39.107.239.177)中所定义的数据规则 |
+| attrData | Object | 是 | 将要插入的数据，请严格遵守[DBCenter](http://dbcenter.top)中所定义的数据规则 |
 
 #### 请求示例：
 ```
 var xhr = new XMLHttpRequest();
 
 // 数据表person
-xhr.open('post',`http://39.107.239.177:8888/data/person`);
+xhr.open('post',`http://dbcenter.top:8888/data/person`);
 
 xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
@@ -134,7 +134,7 @@ xhr.onreadystatechange = function() {
 ---
 ### 数据删除接口
 
-#### 调用地址：http://39.107.239.177:8888/data/:tableName
+#### 调用地址：http://dbcenter.top:8888/data/:tableName
 
 #### 请求方式：DELETE
 
@@ -143,7 +143,7 @@ xhr.onreadystatechange = function() {
 #### 请求参数(params)：
 | 名称 | 类型 | 是否必须 | 说明 |
 |:------:|:-------:|:-------------:|:-------------:|
-| tableName | String | 是 | 将要操作的数据表名,通过[DBCenter](http://39.107.239.177)可添加数据表 |
+| tableName | String | 是 | 将要操作的数据表名,通过[DBCenter](http://dbcenter.top)可添加数据表 |
 
 #### 请求参数(body)：
 | 名称 | 类型 | 是否必须 | 说明 |
@@ -155,7 +155,7 @@ xhr.onreadystatechange = function() {
 var xhr = new XMLHttpRequest();
 
 // 数据表person
-xhr.open('delete', `http://39.107.239.177:8888/data/person`);
+xhr.open('delete', `http://dbcenter.top:8888/data/person`);
 
 xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
@@ -183,7 +183,7 @@ xhr.onreadystatechange = function() {
 ---
 ### 数据更新接口
 
-#### 调用地址：http://39.107.239.177:8888/data/:tableName
+#### 调用地址：http://dbcenter.top:8888/data/:tableName
 
 #### 请求方式：PUT
 
@@ -192,7 +192,7 @@ xhr.onreadystatechange = function() {
 #### 请求参数(params)：
 | 名称 | 类型 | 是否必须 | 说明 |
 |:------:|:-------:|:-------------:|:-------------:|
-| tableName | String | 是 | 将要操作的数据表名,通过[DBCenter](http://39.107.239.177)可添加数据表 |
+| tableName | String | 是 | 将要操作的数据表名,通过[DBCenter](http://dbcenter.top)可添加数据表 |
 
 #### 请求参数(body)：
 | 名称 | 类型 | 是否必须 | 说明 |
@@ -210,7 +210,7 @@ var attrData = {
 }
 
 // 数据表Person
-xhr.open('put', `http://39.107.239.177:8888/data/person`);
+xhr.open('put', `http://dbcenter.top:8888/data/person`);
 
 xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
@@ -237,7 +237,7 @@ xhr.onreadystatechange = function () {
 ---
 ### 数据查询接口
 
-#### 调用地址：http://39.107.239.177:8888/data/:tableName
+#### 调用地址：http://dbcenter.top:8888/data/:tableName
 
 #### 请求方式：GET
 
@@ -263,7 +263,7 @@ var condition = {
 }
 
 // 数据表Person
-xhr.open('get',`http://39.107.239.177:8888/data/person?condition=${JSON.stringify(condition)}`);
+xhr.open('get',`http://dbcenter.top:8888/data/person?condition=${JSON.stringify(condition)}`);
 
 // 头域中设置手机号和密码
 xhr.setRequestHeader("phone", "185****7810");
