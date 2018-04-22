@@ -8,7 +8,7 @@ const table = new Table();
 
 router.post('/', table.insert.bind(table));
 
-router.delete('/', table.delete.bind(table));
+router.delete('/:tableName', table.delete.bind(table));
 
 router.get('/', table.query.bind(table));
 
