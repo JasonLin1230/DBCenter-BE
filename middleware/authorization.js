@@ -8,14 +8,10 @@ const { sql } = require('../base/mysql');
 module.exports = async function(ctx, next) {
     const { phone, secret } = ctx.headers;
 
-    console.log(phone, secret)
-
     try {
 
-        await sql(`Use DBCenter;`);
-
         const queryUser = `
-            Select * From user
+            Select * From DBCenter.user
                 Where
                     phone="${phone}" And secret="${secret}";
         `;
@@ -23,7 +19,7 @@ module.exports = async function(ctx, next) {
 
         if (users.length) {
 
-            await sql(`Use user_${phone};`);
+            await sql(`Use user_${phone}`);
 
             await next();
 
@@ -33,8 +29,6 @@ module.exports = async function(ctx, next) {
                 messsage: 'Authentication failed!'
             }
         }
-
-        
 
     } catch (err) {
         console.error(err);
