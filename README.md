@@ -15,8 +15,6 @@
 
 
 ## 说明
-保持原有功能不变 对代码进行优化 前端工程与后端工程分离
-
 DBCenter是一个协助前端工程师实现数据持久化存储的后台系统
 
 通过本系统,可以创建数据表,对该数据表进行增删改查操作
@@ -35,7 +33,7 @@ DBCenter是一个协助前端工程师实现数据持久化存储的后台系统
 `clone`项目到本地
 
 ```
-git clone https://github.com/wrz199306/DECenter-BE
+git clone https://github.com/wrz199306/DBCenter-BE
 ```
 
 安装依赖
