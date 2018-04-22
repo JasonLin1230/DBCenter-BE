@@ -8,7 +8,7 @@
     },
     "msgApi": {
         "url": "http://smsmsgs.market.alicloudapi.com/smsmsgs",
-        "auth": "APPCODE a1a55e307eab44fe894261ac41a67dc4",
+        "auth": "*****",
         "skin": "9015"
     }
 }
