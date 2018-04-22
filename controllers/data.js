@@ -39,7 +39,7 @@ module.exports = class extends Base {
 
     async delete(ctx) {
         try {
-            const table = ctx.params.tableName;
+            const tableName = ctx.params.tableName;
     
             const id = ctx.request.body.id;
             
