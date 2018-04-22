@@ -49,16 +49,16 @@ exports.init = async function() {
         `;
         await this.sql(createUserSql);
 
-        const createLogSql = `
-            Create Table If Not Exists log(
-                id Int Not Null Primary Key Auto_Increment,
-                user_id Int Not Null,
-                type Enum('insert', 'delete', 'update') Not Null,
-                date Datetime Not Null,
-                foreign Key(user_id) references user(id)
-            )Engine=InnoDB Default Charset=utf8;
-        `;
-        await this.sql(createLogSql)
+        // const createLogSql = `
+        //     Create Table If Not Exists log(
+        //         id Int Not Null Primary Key Auto_Increment,
+        //         user_id Int Not Null,
+        //         type Enum('insert', 'delete', 'update') Not Null,
+        //         date Datetime Not Null,
+        //         foreign Key(user_id) references user(id)
+        //     )Engine=InnoDB Default Charset=utf8;
+        // `;
+        // await this.sql(createLogSql)
     } catch(err) {
         console.error(err);
     }
