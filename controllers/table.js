@@ -49,7 +49,7 @@ module.exports = class extends Base {
 
             let name = `\`${attr.name}\``;
 
-            let type = getAttrType(attr.type);
+            let type = formatType(attr.type);
 
             let notNull = attr.notNull ? 'NOT NULL' : '';
 
@@ -85,7 +85,7 @@ module.exports = class extends Base {
                 message: 'tableName is not defined'
             };
         }
-    
+
         const result = await this.sql(`DROP TABLE ${tableName};`);
     
         ctx.body = {
@@ -113,7 +113,18 @@ module.exports = class extends Base {
     async findOne(ctx) {
         const tableName = ctx.params.tableName;
 
-        let result = await this.sql(`desc ${tableName}`);
+        let result;
+
+        try {
+            result = await this.sql(`desc ${tableName}`);
+        } catch(err) {
+            ctx.body = {
+                code: 1,
+                message: err.message
+            }
+
+            return;
+        }
 
         result = result.map((item) => {
             let type = item.Type.split('(')[0]
