@@ -35,7 +35,7 @@ DBCenter是一个协助前端工程师实现数据持久化存储的后台系统
 `clone`项目到本地
 
 ```
-git clone https://github.com/wrz199306/dbcenter-be
+git clone https://github.com/wrz199306/DECenter-BE
 ```
 
 安装依赖
