@@ -17,14 +17,14 @@ module.exports = class extends Base {
     async login(ctx, next) {
         const { phone, valicode } = ctx.request.body;
 
-        if (myCache.get(`phonePin_${phone}`) != valicode) {
-            ctx.body = {
-                code: 1,
-                messsage: '验证码错误！'
-            };
+        // if (myCache.get(`phonePin_${phone}`) != valicode) {
+        //     ctx.body = {
+        //         code: 1,
+        //         messsage: '验证码错误！'
+        //     };
 
-            next();
-        }
+        //     next();
+        // }
 
         try {
 
