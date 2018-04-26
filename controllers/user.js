@@ -27,10 +27,7 @@ module.exports = class extends Base {
         // }
 
         try {
-
-            await this.sql('Use DBCenter;');
-
-            const userData = await this.sql(`Select * From user`);
+            const userData = await this.sql(`Select * From DBCenter.user Where phone='${phone}'`);
             
             let secret = '';
             
