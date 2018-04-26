@@ -9,7 +9,6 @@ module.exports = async function(ctx, next) {
     const { phone, secret } = ctx.headers;
 
     try {
-
         const queryUser = `
             Select * From DBCenter.user
                 Where
