@@ -9,15 +9,12 @@ const route = require('./routes');
 
 const config = require('./config');
 
-const mysql = require('./base/mysql');
-mysql.init();
-
 const app = new Koa();
 
 app
     .use(bodyParser())
-    .use(logger)
     .use(cors)
+    .use(logger)
     .use(route.routes());
 
 // 默认端口80
