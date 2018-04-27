@@ -100,7 +100,10 @@ module.exports = class extends Base {
         const result = await this.sql('SHOW TABLES;');
 
         const tables = result.map((item) => {
-            return Object.values(item)[0]
+            return Object.values(item)[0];
+        }).filter((item) => {
+            const { phone } = ctx.headers;
+            return item !== `user_${phone}`
         })
 
         ctx.body = {
