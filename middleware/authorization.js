@@ -9,16 +9,16 @@ module.exports = async function(ctx, next) {
     const { phone, secret } = ctx.headers;
 
     try {
+        await sql(`USE user_${phone}`);
+
         const queryUser = `
-            Select * From DBCenter.user
+            Select * From user_${phone}
                 Where
                     phone="${phone}" And secret="${secret}";
         `;
         const users = await sql(queryUser);
 
         if (users.length) {
-
-            await sql(`Use user_${phone}`);
 
             await next();
 
@@ -30,6 +30,11 @@ module.exports = async function(ctx, next) {
         }
 
     } catch (err) {
+        ctx.body = {
+            code: 3012,
+            messsage: 'Authentication failed!'
+        }
+
         console.error(err);
     }
 }
