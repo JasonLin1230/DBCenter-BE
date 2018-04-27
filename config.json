@@ -7,7 +7,7 @@
         "password": "123456"
     },
     "msgApi": {
-        "url": "http://smsmsgs.market.alicloudapi.com/smsmsgs",
+        "url": "*****",
         "auth": "*****",
         "skin": "9015"
     }
