@@ -23,12 +23,25 @@ module.exports = class extends Base {
         //         messsage: '验证码错误！'
         //     };
 
-        //     next();
+        //     return;
         // }
 
         try {
-            const userData = await this.sql(`Select * From DBCenter.user Where phone='${phone}'`);
-            
+            await this.sql(`Create Database If Not Exists user_${phone}`);
+
+            await this.sql(`Use user_${phone}`);
+
+            const createUserSql = `
+                Create Table If Not Exists user_${phone} (
+                    phone Char(11) Not Null Unique,
+                    secret Char(32) Not Null
+                )Engine=InnoDB Default Charset=utf8;
+            `;
+
+            const a = await this.sql(createUserSql);
+
+            const userData = await this.sql(`Select * From user_${phone} Where phone='${phone}'`);
+
             let secret = '';
             
             if (userData.length) {
@@ -41,14 +54,12 @@ module.exports = class extends Base {
                 secret = md5(msg).toString();
 
                 const inserUserSql = `
-                    Insert Into user (phone, secret)
+                    Insert Into user_${phone} (phone, secret)
                         Values
                             ("${phone}", "${secret}")
                 `;
                 await this.sql(inserUserSql);
             }
-
-            await this.sql(`Create Database If Not Exists user_${phone}`);
 
             ctx.body = {
                 code: 0,
@@ -56,7 +67,7 @@ module.exports = class extends Base {
             };
 
         } catch(err) {
-            throw Error(err.message);
+            throw Error(err);
         }
     }
 
@@ -78,6 +89,8 @@ module.exports = class extends Base {
                 params: { param, phone, skin },
                 headers: { Authorization }
             });
+
+            console.log(res)
 
             const { Code, Message } = res.data;
 
